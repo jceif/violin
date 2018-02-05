@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/violin.iml" filepath="$PROJECT_DIR$/violin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/violinDao/violinDao.iml" filepath="$PROJECT_DIR$/violinDao/violinDao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/violinDaoImpl/violinDaoImpl.iml" filepath="$PROJECT_DIR$/violinDaoImpl/violinDaoImpl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/violinModel/violinModel.iml" filepath="$PROJECT_DIR$/violinModel/violinModel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/violinService/violinService.iml" filepath="$PROJECT_DIR$/violinService/violinService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/violinServiceImpl/violinServiceImpl.iml" filepath="$PROJECT_DIR$/violinServiceImpl/violinServiceImpl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/violinWeb/violinWeb.iml" filepath="$PROJECT_DIR$/violinWeb/violinWeb.iml" />
+    </modules>
+  </component>
+</project>

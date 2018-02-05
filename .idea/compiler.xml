@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="violindao" />
+        <module name="violinDao" />
+        <module name="violinDaoImpl" />
+        <module name="violinimpl" />
+        <module name="violinModel" />
+        <module name="violinmodel" />
+        <module name="violinservice" />
+        <module name="violinService" />
+        <module name="violinServiceImpl" />
+        <module name="violinWeb" />
+        <module name="violinweb" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.6">
+      <module name="violin" target="1.5" />
+      <module name="violindao" target="1.5" />
+      <module name="violinDao" target="1.5" />
+      <module name="violinDaoImpl" target="1.5" />
+      <module name="violinimpl" target="1.5" />
+      <module name="violinmodel" target="1.5" />
+      <module name="violinModel" target="1.5" />
+      <module name="violinService" target="1.5" />
+      <module name="violinservice" target="1.5" />
+      <module name="violinServiceImpl" target="1.5" />
+      <module name="violinweb" target="1.5" />
+      <module name="violinWeb" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

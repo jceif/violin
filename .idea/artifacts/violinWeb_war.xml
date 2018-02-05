@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="violinWeb:war">
+    <output-path>$PROJECT_DIR$/violinWeb/target</output-path>
+    <root id="archive" name="violin-web.war">
+      <element id="artifact" artifact-name="violinWeb:war exploded" />
+    </root>
+  </artifact>
+</component>
