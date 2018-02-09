@@ -1,0 +1,15 @@
+*.iml
+.idea/
+.idea
+violinDao/*.iml
+violinDaoImpl/*.iml
+violinModel/*.iml
+violinService/*.iml
+violinServiceImpl/*.iml
+violinWeb/*.iml
+violinWeb/*.log
+logs/*.log
+logs/
+/*.iml
+*.iml
+target/
