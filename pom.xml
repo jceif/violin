@@ -6,10 +6,10 @@
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>violinmodel</module>
-    <module>violinservice</module>
-    <module>violinweb</module>
-    <module>violindao</module>
+    <module>violinModel</module>
+    <module>violinService</module>
+    <module>violinWeb</module>
+    <module>violinDao</module>
       <module>violinDaoImpl</module>
       <module>violinServiceImpl</module>
   </modules>
