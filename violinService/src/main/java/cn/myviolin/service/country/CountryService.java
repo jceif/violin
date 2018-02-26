@@ -4,6 +4,7 @@ import cn.myviolin.model.country.Country;
 import cn.myviolin.service.base.IBaseViolinService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jc on 2018/2/1 14:12
@@ -20,4 +21,5 @@ public interface CountryService extends IBaseViolinService<Country> {
      * @return
      */
     List<Country> selectByCountry(Country country, int page, int rows);
+
 }

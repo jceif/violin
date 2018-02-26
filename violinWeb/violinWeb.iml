@@ -30,8 +30,7 @@
     <orderEntry type="module" module-name="violinModel" />
     <orderEntry type="module" module-name="violinDao" />
     <orderEntry type="module" module-name="violinService" />
-    <orderEntry type="module" module-name="violinServiceImpl" />
-    <orderEntry type="module" module-name="violinDaoImpl" />
+    <orderEntry type="module" module-name="violinImpl" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.0.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.0.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:5.0.3.RELEASE" level="project" />

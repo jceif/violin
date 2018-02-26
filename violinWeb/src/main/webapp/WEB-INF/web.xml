@@ -5,9 +5,8 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:config/spring-applicationContext.xml,
-            classpath:config/spring-mybatis.xml,
-            classpath:config/mybatis-config.xml
+            classpath:config/spring-context.xml,
+            classpath:config/spring-mybatis.xml
         </param-value>
     </context-param>
 
@@ -34,7 +33,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/config/spring-applicationContext.xml</param-value>
+            <param-value>classpath:/config/spring-context.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -45,5 +44,12 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>/images/*</url-pattern>
+        <url-pattern>/css/*</url-pattern>
+        <url-pattern>/js/*</url-pattern>
+    </servlet-mapping>
 </web-app>

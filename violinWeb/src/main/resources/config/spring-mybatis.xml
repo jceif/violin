@@ -5,12 +5,13 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- 引入外部properties文件 -->
-    <context:property-placeholder location="classpath:properties/jdbc.properties" />
+   <!-- &lt;!&ndash; 引入外部properties文件 &ndash;&gt;
+    <context:property-placeholder location="classpath:properties/jdbc.properties" />-->
     <!-- ====================================================== Add MyBatis Support Start ====================================================== -->
     <!-- 配置写数据源 -->
     <bean id="dataSourceWrite" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 基本属性 url、userLogin、password -->
+        <property name="driverClassName" value="${jdbc.master.driverClassName}" />
         <property name="url" value="${jdbc.master.url}" />
         <property name="username" value="${jdbc.master.username}" />
         <property name="password" value="${jdbc.master.password}" />
@@ -39,6 +40,7 @@
     <!-- 配置读数据源 -->
     <bean id="dataSourceRead" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 基本属性 url、userLogin、password -->
+        <property name="driverClassName" value="${jdbc.slave.driverClassName}" />
         <property name="url" value="${jdbc.slave.url}" />
         <property name="username" value="${jdbc.slave.username}" />
         <property name="password" value="${jdbc.slave.password}" />
@@ -63,73 +65,6 @@
         <property name="filters" value="config,stat,log4j,wall" />
         <property name="connectionProperties" value="config.decrypt=false" />
     </bean>
-
-    <!-- 可写的SessionFactory -->
-    <bean id="sqlWriteSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" scope="singleton">
-        <property name="dataSource" ref="dataSourceWrite" />
-        <property name="configLocation" value="classpath:config/mybatis-config.xml" />
-    </bean>
-
-    <!-- 只读的SessionFactory -->
-    <bean id="sqlReadOnlySessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" scope="singleton">
-        <property name="dataSource" ref="dataSourceRead" />
-        <property name="configLocation" value="classpath:config/mybatis-config.xml" />
-        <property name="plugins">
-            <array>
-                <bean class="com.github.pagehelper.PageInterceptor">
-                    <!-- 这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置 -->
-                    <property name="properties">
-                        <value>
-                            helperDialect=mysql
-                            reasonable=true
-                            supportMethodsArguments=true
-                            params=count=countSql
-                            autoRuntimeDialect=true
-                        </value>
-                    </property>
-                </bean>
-            </array>
-        </property>
-    </bean>
-
-
-
-    <!-- 可写的Session -->
-    <bean id="writableSQLSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlWriteSessionFactory" />
-    </bean>
-
-    <!-- 只读的Session -->
-    <bean id="readonlySQLSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlReadOnlySessionFactory" />
-    </bean>
-
-
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSourceWrite"/>
-    </bean>
-
-    <tx:advice id="txAdvice" transaction-manager="transactionManager" >
-        <tx:attributes>
-            <tx:method name="select*" read-only="true"/>
-            <tx:method name="find*" read-only="true"/>
-            <tx:method name="get*" read-only="true"/>
-            <tx:method name="*"/>
-        </tx:attributes>
-    </tx:advice>
-
-
-
-    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="cn.myviolin.db.mapper"/>
-        <property name="markerInterface" value="cn.myviolin.db.base.BaseViolinMapper"/>
-       <!-- <property name="properties">
-            <value>
-                mappers=tk.mybatis.mapper.common.Mapper
-            </value>
-        </property>-->
-    </bean>
-
 
 
 

@@ -2,7 +2,6 @@
 .idea/
 .idea
 violinDao/*.iml
-violinDaoImpl/*.iml
 violinModel/*.iml
 violinService/*.iml
 violinServiceImpl/*.iml

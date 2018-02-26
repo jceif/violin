@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/login")
 public class LoginController {
     @Autowired
-    @Qualifier("loginImpl")
     private UserLoginService loginService;
     @RequestMapping("/")
     public String login(){

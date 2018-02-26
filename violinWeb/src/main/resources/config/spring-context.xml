@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
+        default-lazy-init="true">
+
+
+    <!-- 引入外部properties文件 -->
+    <context:property-placeholder location="classpath:properties/jdbc.properties" />
+    <!-- 添加注解驱动 -->
+    <mvc:annotation-driven />
+    <!-- 默认扫描的包路径 -->
+    <context:component-scan base-package="cn.myviolin.controller,cn.myviolin.serviceImpl,cn.myviolin.daoImpl">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+        <context:include-filter type="annotation" expression="org.springframework.scheduling.annotation.Async" />
+    </context:component-scan>
+
+    <!-- mvc:view-controller可以在不需要Controller处理request的情况，转向到设置的View -->
+    <!-- 像下面这样设置，如果请求为/，则不通过controller，而直接解析为/index.jsp -->
+    <!--<mvc:view-controller path="/" view-name="index" />-->
+    <!-- 配置 SpringMVC Controller 转发JSP页面的路径 -->
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!--  ================================== import sub-config file  ================================== -->
+    <import resource="spring-mybatis.xml" />
+    <!--  ================================== /import sub-config file  ================================== -->
+
+    <!-- 只读的SessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" scope="singleton">
+        <property name="dataSource" ref="dataSourceWrite" />
+        <property name="mapperLocations" value="classpath*:cn/myviolin/db/mapping/*Mapper.xml"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <!-- 这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置 -->
+                    <property name="properties">
+                        <value>
+                            helperDialect=mysql
+                            reasonable=true
+                            supportMethodsArguments=true
+                            params=count=countSql
+                            autoRuntimeDialect=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSourceWrite"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="txManager"/>
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="create*" propagation="REQUIRED" />
+            <tx:method name="insert*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="merge*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="remove*" propagation="REQUIRED" />
+        </tx:attributes>
+    </tx:advice>
+
+
+
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.myviolin.db.mapper"/>
+        <property name="markerInterface" value="cn.myviolin.db.base.BaseViolinMapper"/>
+    </bean>
+
+    <mvc:default-servlet-handler/>
+</beans>

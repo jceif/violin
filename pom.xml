@@ -10,8 +10,8 @@
     <module>violinService</module>
     <module>violinWeb</module>
     <module>violinDao</module>
-      <module>violinDaoImpl</module>
-      <module>violinServiceImpl</module>
+    <module>violinImpl</module>
+
   </modules>
   <name>violin Maven Webapp</name>
   <url>http://maven.apache.org</url>

@@ -9,4 +9,7 @@
     <result column="countryname" jdbcType="VARCHAR" property="countryname" />
     <result column="countrycode" jdbcType="VARCHAR" property="countrycode" />
   </resultMap>
+
+
+  selectByParameter
 </mapper>
