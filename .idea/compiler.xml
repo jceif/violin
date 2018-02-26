@@ -9,6 +9,7 @@
         <module name="violin-impl" />
         <module name="violinDao" />
         <module name="violindao" />
+        <module name="violinImpl" />
         <module name="violinimpl" />
         <module name="violinModel" />
         <module name="violinmodel" />
