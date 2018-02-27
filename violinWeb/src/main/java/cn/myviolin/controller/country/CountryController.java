@@ -1,11 +1,12 @@
 package cn.myviolin.controller.country;
 
 
+import cn.myviolin.common.redis.IRedisService;
 import cn.myviolin.model.country.Country;
 import cn.myviolin.service.country.CountryService;
 import com.github.pagehelper.PageInfo;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+
 
 /**
  * Created by jc on 2018/2/2 13:25
@@ -25,8 +27,15 @@ public class CountryController {
     @Autowired
     private CountryService countryService;
 
+    @Autowired
+    private IRedisService redisService;
+
+    Logger logger=Logger.getLogger(CountryController.class);
+
     private String page_list = "country/index";
     private String redirect_list = "redirect:list";
+
+
 
     @RequestMapping("/list")
     public ModelAndView index(Country country,
@@ -41,8 +50,10 @@ public class CountryController {
         result.addObject("rows", rows);
         result.addObject("controllerName", "country");
         result.addObject("searchPar", "country");
-        String aa="aa";
-        
+
+        redisService.put("name","feijiuchun");
+        logger.info(redisService.get("name"));
+
         return result;
     }
 

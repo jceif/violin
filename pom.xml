@@ -11,6 +11,7 @@
     <module>violinWeb</module>
     <module>violinDao</module>
     <module>violinImpl</module>
+    <module>violinCommon</module>
 
   </modules>
   <name>violin Maven Webapp</name>
@@ -139,17 +140,18 @@
           <scope>test</scope>
       </dependency>
 
+      <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+      <dependency>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-core</artifactId>
+          <version>2.10.0</version>
+      </dependency>
+
 
 
   </dependencies>
   <build>
     <finalName>violin</finalName>
-
-
-
-
-
-
   </build>
 
 

@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="violin-impl" />
+        <module name="violinCommon" />
         <module name="violinDao" />
         <module name="violindao" />
         <module name="violinImpl" />
@@ -23,6 +24,7 @@
     <bytecodeTargetLevel target="1.6">
       <module name="violin" target="1.5" />
       <module name="violin-impl" target="1.5" />
+      <module name="violinCommon" target="1.5" />
       <module name="violindao" target="1.5" />
       <module name="violinDao" target="1.5" />
       <module name="violinDaoImpl" target="1.5" />

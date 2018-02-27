@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/violin.iml" filepath="$PROJECT_DIR$/violin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/violinCommon/violinCommon.iml" filepath="$PROJECT_DIR$/violinCommon/violinCommon.iml" />
       <module fileurl="file://$PROJECT_DIR$/violinDao/violinDao.iml" filepath="$PROJECT_DIR$/violinDao/violinDao.iml" />
       <module fileurl="file://$PROJECT_DIR$/violinImpl/violinImpl.iml" filepath="$PROJECT_DIR$/violinImpl/violinImpl.iml" />
       <module fileurl="file://$PROJECT_DIR$/violinModel/violinModel.iml" filepath="$PROJECT_DIR$/violinModel/violinModel.iml" />

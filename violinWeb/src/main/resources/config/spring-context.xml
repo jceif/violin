@@ -16,11 +16,13 @@
 
 
     <!-- 引入外部properties文件 -->
-    <context:property-placeholder location="classpath:properties/jdbc.properties" />
+    <context:property-placeholder location="classpath:properties/*.properties" ignore-unresolvable="true"/>
+    <!--<context:property-placeholder location="classpath:properties/log4j.properties" ignore-unresolvable="true"/>-->
+
     <!-- 添加注解驱动 -->
     <mvc:annotation-driven />
     <!-- 默认扫描的包路径 -->
-    <context:component-scan base-package="cn.myviolin.controller,cn.myviolin.serviceImpl,cn.myviolin.daoImpl">
+    <context:component-scan base-package="cn.myviolin.controller,cn.myviolin.serviceImpl,cn.myviolin.common">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
@@ -65,6 +67,8 @@
     </bean>
 
 
+
+
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSourceWrite"/>
     </bean>
@@ -91,4 +95,21 @@
     </bean>
 
     <mvc:default-servlet-handler/>
+
+
+
+
+    <import resource="spring-redis.xml" />
+
+
+
+
+
+
+
+
+
+
+
+
 </beans>
