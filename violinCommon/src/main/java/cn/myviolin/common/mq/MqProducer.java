@@ -1,34 +1,29 @@
-package cn.myviolin;
-
+package cn.myviolin.common.mq;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.TimeoutException;
 
 /**
- * Hello world!
- *
+ * Created by jc on 2018/3/2 15:58
+ * description mq
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class MqProducer {
+    public static void publish(){
         Connection connection = null;
         Channel channel = null;
         try
         {
             ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost("10.20.0.38");
+            factory.setHost("http://10.20.0.38");
             factory.setPort(15672);
             factory.setUsername("feijiuchun");
             factory.setPassword("feijiuchun");
-            //factory.setVirtualHost("/");
+            //factory.setVirtualHost("test_vhosts");
+
             //创建与RabbitMQ服务器的TCP连接
             connection  = factory.newConnection();
             channel = connection.createChannel();
@@ -62,8 +57,5 @@ public class App
                 }
             }
         }
-
-
-
     }
 }
