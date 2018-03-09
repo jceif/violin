@@ -51,8 +51,9 @@ public class CountryController {
         result.addObject("controllerName", "country");
         result.addObject("searchPar", "country");
 
-        redisService.put("name","feijiuchun");
-        logger.info(redisService.get("name"));
+
+        Runnable thread=new MyRunnable(redisService);
+        thread.run();
 
         return result;
     }
@@ -84,4 +85,6 @@ public class CountryController {
         countryService.delete(id);
         return redirect_list;
     }
+
+
 }
