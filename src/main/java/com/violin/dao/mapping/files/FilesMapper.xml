@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.violin.com.violin.dao.mapping.files.FilesMapper">
+<resultMap id="files" type="com.violin.com.violin.model.files.Files">
+	<result property="id" column="id"/>
+	<result property="fileName" column="file_name"/>
+	<result property="fileTempPath" column="file_temp_path"/>
+	<result property="filePath" column="file_path"/>
+	<result property="moduleName" column="module_name"/>
+	<result property="entityName" column="entity_name"/>
+	<result property="entityNameProperty" column="entity_name_property"/>
+	<result property="entityId" column="entity_id"/>
+	<result property="contentType" column="content_type"/>
+	<result property="size" column="size"/>
+	<result property="type" column="type"/>
+	<result property="createTime" column="create_time"/>
+</resultMap>
+<insert id="insertFiles" parameterType="com.violin.com.violin.model.files.Files">
+insert into files
+(	id,
+	file_name,
+	file_temp_path,
+	file_path,
+	module_name,
+	entity_name,
+	entity_name_property,
+	entity_id,
+	content_type,
+	size,
+	type,
+	create_time
+)values(
+	#{id},
+	#{fileName},
+	#{fileTempPath},
+	#{filePath},
+	#{moduleName},
+	#{entityName},
+	#{entityNameProperty},
+	#{entityId},
+	#{contentType},
+	#{size},
+	#{type},
+	#{createTime}
+)
+</insert>
+<delete id="deleteFilesById">
+	delete from files
+	where id=#{id}
+</delete>
+<delete id="deleteFilesAll">
+	delete from files
+</delete>
+<select id="findFilesById" resultMap="files">
+	select * from files
+	where id=#{id}
+</select>
+<select id="findFilesList" resultMap="files">
+	select * from files
+</select>
+<update id="updateFiles" parameterType="com.violin.com.violin.model.files.Files">
+update files
+<set>
+	id=#{id},
+	file_name=#{fileName},
+	file_temp_path=#{fileTempPath},
+	file_path=#{filePath},
+	module_name=#{moduleName},
+	entity_name=#{entityName},
+	entity_name_property=#{entityNameProperty},
+	entity_id=#{entityId},
+	content_type=#{contentType},
+	size=#{size},
+	type=#{type},
+	create_time=#{createTime}
+</set>
+<where>	
+id=#{id}	
+</where>	
+</update>
+<delete id="deleteFilesListByIds" parameterType ="java.lang.String">
+	delete from files
+	where id in
+	<foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
+</delete>
+<delete id="deleteFilesList" parameterType ="com.violin.com.violin.model.files.Files">
+	delete from files
+	where id in
+	<foreach collection="list" item="item" index= "index" open="(" separator="," close=")">#{item.id}</foreach>
+</delete>
+<insert id="insertFilesList" parameterType="java.util.List">
+insert into files
+(	id,
+	file_name,
+	file_temp_path,
+	file_path,
+	module_name,
+	entity_name,
+	entity_name_property,
+	entity_id,
+	content_type,
+	size,
+	type,
+	create_time
+)values<foreach collection="list" item="item" index= "index" separator="," >
+(	#{item.id},
+	#{item.fileName},
+	#{item.fileTempPath},
+	#{item.filePath},
+	#{item.moduleName},
+	#{item.entityName},
+	#{item.entityNameProperty},
+	#{item.entityId},
+	#{item.contentType},
+	#{item.size},
+	#{item.type},
+	#{item.createTime}
+)</foreach>
+</insert>
+<update id="updateFilesList" parameterType="java.util.List">
+<foreach collection="list" item="item" index= "index" separator=";" >
+update files
+set
+	id=#{item.id},
+	file_name=#{item.fileName},
+	file_temp_path=#{item.fileTempPath},
+	file_path=#{item.filePath},
+	module_name=#{item.moduleName},
+	entity_name=#{item.entityName},
+	entity_name_property=#{item.entityNameProperty},
+	entity_id=#{item.entityId},
+	content_type=#{item.contentType},
+	size=#{item.size},
+	type=#{item.type},
+	create_time=#{item.createTime}
+
+where	
+id=#{item.id}	
+</foreach>
+</update>
+<select id="findFilesQuery" resultMap="files">
+	select * from files
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="fileName!=null and fileName!=''"> 
+		AND file_name=#{fileName}
+	</if>
+	 <if test="fileTempPath!=null and fileTempPath!=''"> 
+		AND file_temp_path=#{fileTempPath}
+	</if>
+	 <if test="filePath!=null and filePath!=''"> 
+		AND file_path=#{filePath}
+	</if>
+	 <if test="moduleName!=null and moduleName!=''"> 
+		AND module_name=#{moduleName}
+	</if>
+	 <if test="entityName!=null and entityName!=''"> 
+		AND entity_name=#{entityName}
+	</if>
+	 <if test="entityNameProperty!=null and entityNameProperty!=''"> 
+		AND entity_name_property=#{entityNameProperty}
+	</if>
+	 <if test="entityId!=null and entityId!=''"> 
+		AND entity_id=#{entityId}
+	</if>
+	 <if test="contentType!=null and contentType!=''"> 
+		AND content_type=#{contentType}
+	</if>
+	 <if test="size!=null and size!=''"> 
+		AND size=#{size}
+	</if>
+	 <if test="type!=null and type!=''"> 
+		AND type=#{type}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+</where>
+	</select>
+<select id="findFilesQueryPage" resultMap="files">
+	select * from files
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="fileName!=null and fileName!=''"> 
+		AND file_name=#{fileName}
+	</if>
+	 <if test="fileTempPath!=null and fileTempPath!=''"> 
+		AND file_temp_path=#{fileTempPath}
+	</if>
+	 <if test="filePath!=null and filePath!=''"> 
+		AND file_path=#{filePath}
+	</if>
+	 <if test="moduleName!=null and moduleName!=''"> 
+		AND module_name=#{moduleName}
+	</if>
+	 <if test="entityName!=null and entityName!=''"> 
+		AND entity_name=#{entityName}
+	</if>
+	 <if test="entityNameProperty!=null and entityNameProperty!=''"> 
+		AND entity_name_property=#{entityNameProperty}
+	</if>
+	 <if test="entityId!=null and entityId!=''"> 
+		AND entity_id=#{entityId}
+	</if>
+	 <if test="contentType!=null and contentType!=''"> 
+		AND content_type=#{contentType}
+	</if>
+	 <if test="size!=null and size!=''"> 
+		AND size=#{size}
+	</if>
+	 <if test="type!=null and type!=''"> 
+		AND type=#{type}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+</where>
+		limit #{startIndex},#{limit}
+
+</select>
+<select id="findCountFilesQuery" resultType="java.lang.Integer">
+	select count(*) from files
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="fileName!=null and fileName!=''"> 
+		AND file_name=#{fileName}
+	</if>
+	 <if test="fileTempPath!=null and fileTempPath!=''"> 
+		AND file_temp_path=#{fileTempPath}
+	</if>
+	 <if test="filePath!=null and filePath!=''"> 
+		AND file_path=#{filePath}
+	</if>
+	 <if test="moduleName!=null and moduleName!=''"> 
+		AND module_name=#{moduleName}
+	</if>
+	 <if test="entityName!=null and entityName!=''"> 
+		AND entity_name=#{entityName}
+	</if>
+	 <if test="entityNameProperty!=null and entityNameProperty!=''"> 
+		AND entity_name_property=#{entityNameProperty}
+	</if>
+	 <if test="entityId!=null and entityId!=''"> 
+		AND entity_id=#{entityId}
+	</if>
+	 <if test="contentType!=null and contentType!=''"> 
+		AND content_type=#{contentType}
+	</if>
+	 <if test="size!=null and size!=''"> 
+		AND size=#{size}
+	</if>
+	 <if test="type!=null and type!=''"> 
+		AND type=#{type}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+</where>
+</select>
+</mapper>

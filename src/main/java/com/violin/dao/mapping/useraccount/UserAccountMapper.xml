@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.violin.com.violin.dao.mapping.useraccount.UserAccountMapper">
+<resultMap id="userAccount" type="com.violin.com.violin.model.useraccount.UserAccount">
+	<result property="id" column="id"/>
+	<result property="accountName" column="account_name"/>
+	<result property="accountPwd" column="account_pwd"/>
+	<result property="faileTimes" column="faile_times"/>
+	<result property="lastTime" column="last_time"/>
+</resultMap>
+<insert id="insertUserAccount" parameterType="com.violin.com.violin.model.useraccount.UserAccount">
+insert into user_account
+(	id,
+	account_name,
+	account_pwd,
+	faile_times,
+	last_time
+)values(
+	#{id},
+	#{accountName},
+	#{accountPwd},
+	#{faileTimes},
+	#{lastTime}
+)
+</insert>
+<delete id="deleteUserAccountById">
+	delete from user_account
+	where id=#{id}
+</delete>
+<delete id="deleteUserAccountAll">
+	delete from user_account
+</delete>
+<select id="findUserAccountById" resultMap="userAccount">
+	select * from user_account
+	where id=#{id}
+</select>
+<select id="findUserAccountList" resultMap="userAccount">
+	select * from user_account
+</select>
+<update id="updateUserAccount" parameterType="com.violin.com.violin.model.useraccount.UserAccount">
+update user_account
+<set>
+	id=#{id},
+	account_name=#{accountName},
+	account_pwd=#{accountPwd},
+	faile_times=#{faileTimes},
+	last_time=#{lastTime}
+</set>
+<where>	
+id=#{id}	
+</where>	
+</update>
+<delete id="deleteUserAccountListByIds" parameterType ="java.lang.String">
+	delete from user_account
+	where id in
+	<foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
+</delete>
+<delete id="deleteUserAccountList" parameterType ="com.violin.com.violin.model.useraccount.UserAccount">
+	delete from user_account
+	where id in
+	<foreach collection="list" item="item" index= "index" open="(" separator="," close=")">#{item.id}</foreach>
+</delete>
+<insert id="insertUserAccountList" parameterType="java.util.List">
+insert into user_account
+(	id,
+	account_name,
+	account_pwd,
+	faile_times,
+	last_time
+)values<foreach collection="list" item="item" index= "index" separator="," >
+(	#{item.id},
+	#{item.accountName},
+	#{item.accountPwd},
+	#{item.faileTimes},
+	#{item.lastTime}
+)</foreach>
+</insert>
+<update id="updateUserAccountList" parameterType="java.util.List">
+<foreach collection="list" item="item" index= "index" separator=";" >
+update user_account
+set
+	id=#{item.id},
+	account_name=#{item.accountName},
+	account_pwd=#{item.accountPwd},
+	faile_times=#{item.faileTimes},
+	last_time=#{item.lastTime}
+
+where	
+id=#{item.id}	
+</foreach>
+</update>
+<select id="findUserAccountQuery" resultMap="userAccount">
+	select * from user_account
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="accountName!=null and accountName!=''"> 
+		AND account_name=#{accountName}
+	</if>
+	 <if test="accountPwd!=null and accountPwd!=''"> 
+		AND account_pwd=#{accountPwd}
+	</if>
+	 <if test="faileTimes!=null and faileTimes!=''"> 
+		AND faile_times=#{faileTimes}
+	</if>
+	 <if test="lastTime!=null and lastTime!=''"> 
+		AND last_time=#{lastTime}
+	</if>
+</where>
+	</select>
+<select id="findUserAccountQueryPage" resultMap="userAccount">
+	select * from user_account
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="accountName!=null and accountName!=''"> 
+		AND account_name=#{accountName}
+	</if>
+	 <if test="accountPwd!=null and accountPwd!=''"> 
+		AND account_pwd=#{accountPwd}
+	</if>
+	 <if test="faileTimes!=null and faileTimes!=''"> 
+		AND faile_times=#{faileTimes}
+	</if>
+	 <if test="lastTime!=null and lastTime!=''"> 
+		AND last_time=#{lastTime}
+	</if>
+</where>
+		limit #{startIndex},#{limit}
+
+</select>
+<select id="findCountUserAccountQuery" resultType="java.lang.Integer">
+	select count(*) from user_account
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="accountName!=null and accountName!=''"> 
+		AND account_name=#{accountName}
+	</if>
+	 <if test="accountPwd!=null and accountPwd!=''"> 
+		AND account_pwd=#{accountPwd}
+	</if>
+	 <if test="faileTimes!=null and faileTimes!=''"> 
+		AND faile_times=#{faileTimes}
+	</if>
+	 <if test="lastTime!=null and lastTime!=''"> 
+		AND last_time=#{lastTime}
+	</if>
+</where>
+</select>
+</mapper>
