@@ -7,30 +7,30 @@ import java.util.Map;
 
 public interface UserAccountMapper {
 
-	public void insertUserAccount(UserAccount userAccount);
+	void insertUserAccount(UserAccount userAccount);
 
-	public void deleteUserAccountById(String userAccountId);
+	void deleteUserAccountById(String userAccountId);
 
-	public int deleteUserAccountAll();
+	int deleteUserAccountAll();
 
-	public void updateUserAccount(UserAccount userAccount);
+	void updateUserAccount(UserAccount userAccount);
 
-	public UserAccount findUserAccountById(String userAccountId);
+	UserAccount findUserAccountById(String userAccountId);
 
-	public List<UserAccount> findUserAccountList();
+	List<UserAccount> findUserAccountList();
 
-	public int deleteUserAccountList(List<UserAccount> userAccounts);
+	int deleteUserAccountList(List<UserAccount> userAccounts);
 
-	public int deleteUserAccountListByIds(String[] Ids);
+	int deleteUserAccountListByIds(String[] Ids);
 
-	public int insertUserAccountList(List<UserAccount> userAccounts);
+	int insertUserAccountList(List<UserAccount> userAccounts);
 
-	public void updateUserAccountList(List<UserAccount> userAccounts);
+	void updateUserAccountList(List<UserAccount> userAccounts);
 
-	public List<UserAccount> findUserAccountQuery(Map map);
+	List<UserAccount> findUserAccountQuery(Map map);
 
-	public List<UserAccount> findUserAccountQueryPage(Map map);
+	List<UserAccount> findUserAccountQueryPage(Map map);
 
-	public int findCountUserAccountQuery(Map map);
+	int findCountUserAccountQuery(Map map);
 
 }

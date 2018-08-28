@@ -7,30 +7,30 @@ import java.util.Map;
 
 public interface ProductTypeMapper {
 
-	public void insertProductType(ProductType productType);
+	void insertProductType(ProductType productType);
 
-	public void deleteProductTypeById(String productTypeId);
+	void deleteProductTypeById(String productTypeId);
 
-	public int deleteProductTypeAll();
+	int deleteProductTypeAll();
 
-	public void updateProductType(ProductType productType);
+	void updateProductType(ProductType productType);
 
-	public ProductType findProductTypeById(String productTypeId);
+	ProductType findProductTypeById(String productTypeId);
 
-	public List<ProductType> findProductTypeList();
+	List<ProductType> findProductTypeList();
 
-	public int deleteProductTypeList(List<ProductType> productTypes);
+	int deleteProductTypeList(List<ProductType> productTypes);
 
-	public int deleteProductTypeListByIds(String[] Ids);
+	int deleteProductTypeListByIds(String[] Ids);
 
-	public int insertProductTypeList(List<ProductType> productTypes);
+	int insertProductTypeList(List<ProductType> productTypes);
 
-	public void updateProductTypeList(List<ProductType> productTypes);
+	void updateProductTypeList(List<ProductType> productTypes);
 
-	public List<ProductType> findProductTypeQuery(Map map);
+	List<ProductType> findProductTypeQuery(Map map);
 
-	public List<ProductType> findProductTypeQueryPage(Map map);
+	List<ProductType> findProductTypeQueryPage(Map map);
 
-	public int findCountProductTypeQuery(Map map);
+	int findCountProductTypeQuery(Map map);
 
 }

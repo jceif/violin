@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
-<mapper namespace="com.violin.com.violin.dao.mapping.violininfo.ViolinInfoMapper">
-<resultMap id="violinInfo" type="com.violin.com.violin.model.violininfo.ViolinInfo">
+<mapper namespace="com.violin.dao.mapping.violininfo.ViolinInfoMapper">
+<resultMap id="violinInfo" type="com.violin.model.violininfo.ViolinInfo">
 	<result property="id" column="id"/>
 	<result property="name" column="name"/>
 	<result property="code" column="code"/>
@@ -28,7 +28,7 @@
 	<result property="marketTime" column="market_time"/>
 	<result property="isHot" column="is_hot"/>
 </resultMap>
-<insert id="insertViolinInfo" parameterType="com.violin.com.violin.model.violininfo.ViolinInfo">
+<insert id="insertViolinInfo" parameterType="com.violin.model.violininfo.ViolinInfo">
 insert into violin_info
 (	id,
 	name,
@@ -95,7 +95,7 @@ insert into violin_info
 <select id="findViolinInfoList" resultMap="violinInfo">
 	select * from violin_info
 </select>
-<update id="updateViolinInfo" parameterType="com.violin.com.violin.model.violininfo.ViolinInfo">
+<update id="updateViolinInfo" parameterType="com.violin.model.violininfo.ViolinInfo">
 update violin_info
 <set>
 	id=#{id},
@@ -132,7 +132,7 @@ id=#{id}
 	where id in
 	<foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
 </delete>
-<delete id="deleteViolinInfoList" parameterType ="com.violin.com.violin.model.violininfo.ViolinInfo">
+<delete id="deleteViolinInfoList" parameterType ="com.violin.model.violininfo.ViolinInfo">
 	delete from violin_info
 	where id in
 	<foreach collection="list" item="item" index= "index" open="(" separator="," close=")">#{item.id}</foreach>

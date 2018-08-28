@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
-<mapper namespace="com.violin.com.violin.dao.mapping.files.FilesMapper">
-<resultMap id="files" type="com.violin.com.violin.model.files.Files">
+<mapper namespace="com.violin.dao.mapping.files.FilesMapper">
+<resultMap id="files" type="com.violin.model.files.Files">
 	<result property="id" column="id"/>
 	<result property="fileName" column="file_name"/>
 	<result property="fileTempPath" column="file_temp_path"/>
@@ -16,7 +16,7 @@
 	<result property="type" column="type"/>
 	<result property="createTime" column="create_time"/>
 </resultMap>
-<insert id="insertFiles" parameterType="com.violin.com.violin.model.files.Files">
+<insert id="insertFiles" parameterType="com.violin.model.files.Files">
 insert into files
 (	id,
 	file_name,
@@ -59,7 +59,7 @@ insert into files
 <select id="findFilesList" resultMap="files">
 	select * from files
 </select>
-<update id="updateFiles" parameterType="com.violin.com.violin.model.files.Files">
+<update id="updateFiles" parameterType="com.violin.model.files.Files">
 update files
 <set>
 	id=#{id},
@@ -84,7 +84,7 @@ id=#{id}
 	where id in
 	<foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
 </delete>
-<delete id="deleteFilesList" parameterType ="com.violin.com.violin.model.files.Files">
+<delete id="deleteFilesList" parameterType ="com.violin.model.files.Files">
 	delete from files
 	where id in
 	<foreach collection="list" item="item" index= "index" open="(" separator="," close=")">#{item.id}</foreach>

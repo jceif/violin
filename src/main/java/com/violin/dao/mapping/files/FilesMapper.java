@@ -7,30 +7,30 @@ import java.util.Map;
 
 public interface FilesMapper {
 
-	public void insertFiles(Files files);
+	void insertFiles(Files files);
 
-	public void deleteFilesById(String filesId);
+	void deleteFilesById(String filesId);
 
-	public int deleteFilesAll();
+	int deleteFilesAll();
 
-	public void updateFiles(Files files);
+	void updateFiles(Files files);
 
-	public Files findFilesById(String filesId);
+	Files findFilesById(String filesId);
 
-	public List<Files> findFilesList();
+	List<Files> findFilesList();
 
-	public int deleteFilesList(List<Files> filess);
+	int deleteFilesList(List<Files> filess);
 
-	public int deleteFilesListByIds(String[] Ids);
+	int deleteFilesListByIds(String[] Ids);
 
-	public int insertFilesList(List<Files> filess);
+	int insertFilesList(List<Files> filess);
 
-	public void updateFilesList(List<Files> filess);
+	void updateFilesList(List<Files> filess);
 
-	public List<Files> findFilesQuery(Map map);
+	List<Files> findFilesQuery(Map map);
 
-	public List<Files> findFilesQueryPage(Map map);
+	List<Files> findFilesQueryPage(Map map);
 
-	public int findCountFilesQuery(Map map);
+	int findCountFilesQuery(Map map);
 
 }

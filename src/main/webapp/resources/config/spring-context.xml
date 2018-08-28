@@ -33,7 +33,7 @@
     <!-- 只读的SessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" scope="singleton">
         <property name="dataSource" ref="dataSourceWrite" />
-        <property name="mapperLocations" value="classpath*:cn/jf/db/mapper/*/*Mapper.xml"/>
+        <property name="mapperLocations" value="classpath*:com/violin/dao/mapping/*/*Mapper.xml"/>
     </bean>
 
 

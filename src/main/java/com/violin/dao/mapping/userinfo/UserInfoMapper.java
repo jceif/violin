@@ -7,30 +7,30 @@ import java.util.Map;
 
 public interface UserInfoMapper {
 
-	public void insertUserInfo(UserInfo userInfo);
+	void insertUserInfo(UserInfo userInfo);
 
-	public void deleteUserInfoById(String userInfoId);
+	void deleteUserInfoById(String userInfoId);
 
-	public int deleteUserInfoAll();
+	int deleteUserInfoAll();
 
-	public void updateUserInfo(UserInfo userInfo);
+	void updateUserInfo(UserInfo userInfo);
 
-	public UserInfo findUserInfoById(String userInfoId);
+	UserInfo findUserInfoById(String userInfoId);
 
-	public List<UserInfo> findUserInfoList();
+	List<UserInfo> findUserInfoList();
 
-	public int deleteUserInfoList(List<UserInfo> userInfos);
+	int deleteUserInfoList(List<UserInfo> userInfos);
 
-	public int deleteUserInfoListByIds(String[] Ids);
+	int deleteUserInfoListByIds(String[] Ids);
 
-	public int insertUserInfoList(List<UserInfo> userInfos);
+	int insertUserInfoList(List<UserInfo> userInfos);
 
-	public void updateUserInfoList(List<UserInfo> userInfos);
+	void updateUserInfoList(List<UserInfo> userInfos);
 
-	public List<UserInfo> findUserInfoQuery(Map map);
+	List<UserInfo> findUserInfoQuery(Map map);
 
-	public List<UserInfo> findUserInfoQueryPage(Map map);
+	List<UserInfo> findUserInfoQueryPage(Map map);
 
-	public int findCountUserInfoQuery(Map map);
+	int findCountUserInfoQuery(Map map);
 
 }

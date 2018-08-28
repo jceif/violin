@@ -7,30 +7,30 @@ import java.util.Map;
 
 public interface NewsMapper {
 
-	public void insertNews(News news);
+	void insertNews(News news);
 
-	public void deleteNewsById(String newsId);
+	void deleteNewsById(String newsId);
 
-	public int deleteNewsAll();
+	int deleteNewsAll();
 
-	public void updateNews(News news);
+	void updateNews(News news);
 
-	public News findNewsById(String newsId);
+	News findNewsById(String newsId);
 
-	public List<News> findNewsList();
+	List<News> findNewsList();
 
-	public int deleteNewsList(List<News> newss);
+	int deleteNewsList(List<News> newss);
 
-	public int deleteNewsListByIds(String[] Ids);
+	int deleteNewsListByIds(String[] Ids);
 
-	public int insertNewsList(List<News> newss);
+	int insertNewsList(List<News> newss);
 
-	public void updateNewsList(List<News> newss);
+	void updateNewsList(List<News> newss);
 
-	public List<News> findNewsQuery(Map map);
+	List<News> findNewsQuery(Map map);
 
-	public List<News> findNewsQueryPage(Map map);
+	List<News> findNewsQueryPage(Map map);
 
-	public int findCountNewsQuery(Map map);
+	int findCountNewsQuery(Map map);
 
 }

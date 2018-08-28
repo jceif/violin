@@ -7,30 +7,30 @@ import java.util.Map;
 
 public interface MasterInfoMapper {
 
-	public void insertMasterInfo(MasterInfo masterInfo);
+	void insertMasterInfo(MasterInfo masterInfo);
 
-	public void deleteMasterInfoById(String masterInfoId);
+	void deleteMasterInfoById(String masterInfoId);
 
-	public int deleteMasterInfoAll();
+	int deleteMasterInfoAll();
 
-	public void updateMasterInfo(MasterInfo masterInfo);
+	void updateMasterInfo(MasterInfo masterInfo);
 
-	public MasterInfo findMasterInfoById(String masterInfoId);
+	MasterInfo findMasterInfoById(String masterInfoId);
 
-	public List<MasterInfo> findMasterInfoList();
+	List<MasterInfo> findMasterInfoList();
 
-	public int deleteMasterInfoList(List<MasterInfo> masterInfos);
+	int deleteMasterInfoList(List<MasterInfo> masterInfos);
 
-	public int deleteMasterInfoListByIds(String[] Ids);
+	int deleteMasterInfoListByIds(String[] Ids);
 
-	public int insertMasterInfoList(List<MasterInfo> masterInfos);
+	int insertMasterInfoList(List<MasterInfo> masterInfos);
 
-	public void updateMasterInfoList(List<MasterInfo> masterInfos);
+	void updateMasterInfoList(List<MasterInfo> masterInfos);
 
-	public List<MasterInfo> findMasterInfoQuery(Map map);
+	List<MasterInfo> findMasterInfoQuery(Map map);
 
-	public List<MasterInfo> findMasterInfoQueryPage(Map map);
+	List<MasterInfo> findMasterInfoQueryPage(Map map);
 
-	public int findCountMasterInfoQuery(Map map);
+	int findCountMasterInfoQuery(Map map);
 
 }

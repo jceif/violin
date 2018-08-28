@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
-<mapper namespace="com.violin.com.violin.dao.mapping.producttype.ProductTypeMapper">
-<resultMap id="productType" type="com.violin.com.violin.model.producttype.ProductType">
+<mapper namespace="com.violin.dao.mapping.producttype.ProductTypeMapper">
+<resultMap id="productType" type="com.violin.model.producttype.ProductType">
 	<result property="id" column="id"/>
 	<result property="name" column="name"/>
 	<result property="description" column="description"/>
 	<result property="images" column="images"/>
 	<result property="createTime" column="create_time"/>
 </resultMap>
-<insert id="insertProductType" parameterType="com.violin.com.violin.model.producttype.ProductType">
+<insert id="insertProductType" parameterType="com.violin.model.producttype.ProductType">
 insert into product_type
 (	id,
 	name,
@@ -38,7 +38,7 @@ insert into product_type
 <select id="findProductTypeList" resultMap="productType">
 	select * from product_type
 </select>
-<update id="updateProductType" parameterType="com.violin.com.violin.model.producttype.ProductType">
+<update id="updateProductType" parameterType="com.violin.model.producttype.ProductType">
 update product_type
 <set>
 	id=#{id},
@@ -56,7 +56,7 @@ id=#{id}
 	where id in
 	<foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
 </delete>
-<delete id="deleteProductTypeList" parameterType ="com.violin.com.violin.model.producttype.ProductType">
+<delete id="deleteProductTypeList" parameterType ="com.violin.model.producttype.ProductType">
 	delete from product_type
 	where id in
 	<foreach collection="list" item="item" index= "index" open="(" separator="," close=")">#{item.id}</foreach>

@@ -7,30 +7,30 @@ import java.util.Map;
 
 public interface ViolinInfoMapper {
 
-	public void insertViolinInfo(ViolinInfo violinInfo);
+	void insertViolinInfo(ViolinInfo violinInfo);
 
-	public void deleteViolinInfoById(String violinInfoId);
+	void deleteViolinInfoById(String violinInfoId);
 
-	public int deleteViolinInfoAll();
+	int deleteViolinInfoAll();
 
-	public void updateViolinInfo(ViolinInfo violinInfo);
+	void updateViolinInfo(ViolinInfo violinInfo);
 
-	public ViolinInfo findViolinInfoById(String violinInfoId);
+	ViolinInfo findViolinInfoById(String violinInfoId);
 
-	public List<ViolinInfo> findViolinInfoList();
+	List<ViolinInfo> findViolinInfoList();
 
-	public int deleteViolinInfoList(List<ViolinInfo> violinInfos);
+	int deleteViolinInfoList(List<ViolinInfo> violinInfos);
 
-	public int deleteViolinInfoListByIds(String[] Ids);
+	int deleteViolinInfoListByIds(String[] Ids);
 
-	public int insertViolinInfoList(List<ViolinInfo> violinInfos);
+	int insertViolinInfoList(List<ViolinInfo> violinInfos);
 
-	public void updateViolinInfoList(List<ViolinInfo> violinInfos);
+	void updateViolinInfoList(List<ViolinInfo> violinInfos);
 
-	public List<ViolinInfo> findViolinInfoQuery(Map map);
+	List<ViolinInfo> findViolinInfoQuery(Map map);
 
-	public List<ViolinInfo> findViolinInfoQueryPage(Map map);
+	List<ViolinInfo> findViolinInfoQueryPage(Map map);
 
-	public int findCountViolinInfoQuery(Map map);
+	int findCountViolinInfoQuery(Map map);
 
 }

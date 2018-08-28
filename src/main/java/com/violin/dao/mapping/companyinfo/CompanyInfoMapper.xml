@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
-<mapper namespace="com.violin.com.violin.dao.mapping.companyinfo.CompanyInfoMapper">
-<resultMap id="companyInfo" type="com.violin.com.violin.model.companyinfo.CompanyInfo">
+<mapper namespace="com.violin.dao.mapping.companyinfo.CompanyInfoMapper">
+<resultMap id="companyInfo" type="com.violin.model.companyinfo.CompanyInfo">
 	<result property="id" column="id"/>
 	<result property="name" column="name"/>
 	<result property="address" column="address"/>
@@ -12,7 +12,7 @@
 	<result property="description" column="description"/>
 	<result property="updateTime" column="update_time"/>
 </resultMap>
-<insert id="insertCompanyInfo" parameterType="com.violin.com.violin.model.companyinfo.CompanyInfo">
+<insert id="insertCompanyInfo" parameterType="com.violin.model.companyinfo.CompanyInfo">
 insert into company_info
 (	id,
 	name,
@@ -47,7 +47,7 @@ insert into company_info
 <select id="findCompanyInfoList" resultMap="companyInfo">
 	select * from company_info
 </select>
-<update id="updateCompanyInfo" parameterType="com.violin.com.violin.model.companyinfo.CompanyInfo">
+<update id="updateCompanyInfo" parameterType="com.violin.model.companyinfo.CompanyInfo">
 update company_info
 <set>
 	id=#{id},
@@ -68,7 +68,7 @@ id=#{id}
 	where id in
 	<foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
 </delete>
-<delete id="deleteCompanyInfoList" parameterType ="com.violin.com.violin.model.companyinfo.CompanyInfo">
+<delete id="deleteCompanyInfoList" parameterType ="com.violin.model.companyinfo.CompanyInfo">
 	delete from company_info
 	where id in
 	<foreach collection="list" item="item" index= "index" open="(" separator="," close=")">#{item.id}</foreach>
