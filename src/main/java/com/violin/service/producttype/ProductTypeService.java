@@ -9,30 +9,30 @@ import java.util.Map;
 
 public interface ProductTypeService {
 
-	 void insertProductType(ProductType productType);
+    void insertProductType(ProductType productType);
 
-	 void deleteProductTypeById(String productTypeId);
+    void deleteProductTypeById(String productTypeId);
 
-	 int deleteProductTypeAll();
+    int deleteProductTypeAll();
 
-	 void updateProductType(ProductType productType);
+    void updateProductType(ProductType productType);
 
-	 ProductType findProductTypeById(String productTypeId);
+    ProductType findProductTypeById(String productTypeId);
 
-	 List<ProductType> findProductTypeList();
+    List<ProductType> findProductTypeList();
 
-	 int deleteProductTypeListByIds(String[] Ids);
+    int deleteProductTypeListByIds(String[] Ids);
 
-	 int deleteProductTypeList(List<ProductType> productTypes);
+    int deleteProductTypeList(List<ProductType> productTypes);
 
-	 void insertProductTypeList(List<ProductType> productTypes);
+    void insertProductTypeList(List<ProductType> productTypes);
 
-	 void updateProductTypeList(List<ProductType> productTypes);
+    void updateProductTypeList(List<ProductType> productTypes);
 
-	 List<ProductType> findProductTypeQuery(Map map);
+    List<ProductType> findProductTypeQuery(Map map);
 
-	 PageUtil<ProductType> findProductTypeQueryPage(Map map, String pageNo, String pageSize);
+    PageUtil<ProductType> findProductTypeQueryPage(Map map, String pageNo, String pageSize);
 
-	 int findCountProductTypeQuery(Map map);
+    int findCountProductTypeQuery(Map map);
 
 }

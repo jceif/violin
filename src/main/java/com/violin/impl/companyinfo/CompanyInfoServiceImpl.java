@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.violin.common.page.PageUtil;
 
+import com.violin.dao.mapping.companyinfo.CompanyInfoMapper;
 import com.violin.model.companyinfo.CompanyInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import com.violin.service.companyinfo.CompanyInfoService;
 public class CompanyInfoServiceImpl implements CompanyInfoService {
 
 	@Autowired
-	private com.violin.dao.mapping.companyinfo.CompanyInfoMapper companyInfoMapper;
+	private CompanyInfoMapper companyInfoMapper;
 
 	@Override
 	public void insertCompanyInfo(CompanyInfo companyInfo)	{

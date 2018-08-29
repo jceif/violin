@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.violin.common.page.PageUtil;
 
+import com.violin.dao.mapping.dictdata.DictDataMapper;
 import com.violin.model.dictdata.DictData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import com.violin.service.dictdata.DictDataService;
 public class DictDataServiceImpl implements DictDataService {
 
 	@Autowired
-	private com.violin.dao.mapping.dictdata.DictDataMapper dictDataMapper;
+	private DictDataMapper dictDataMapper;
 
 	@Override
 	public void insertDictData(DictData dictData)	{

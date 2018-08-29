@@ -13,8 +13,8 @@
 
 
     <!-- 引入外部properties文件 -->
-    <context:property-placeholder location="classpath:properties/*.properties" ignore-unresolvable="true"/>
     <context:property-placeholder location="classpath:properties/log4j.properties" ignore-unresolvable="true"/>
+    <!--<context:property-placeholder location="classpath:properties/log4j.properties" ignore-unresolvable="true"/>-->
 
     <!-- 添加注解驱动 -->
     <mvc:annotation-driven />
@@ -33,19 +33,16 @@
     <!-- 只读的SessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" scope="singleton">
         <property name="dataSource" ref="dataSourceWrite" />
-        <property name="mapperLocations" value="classpath*:com/violin/dao/mapping/*/*Mapper.xml"/>
+        <property name="mapperLocations" value="classpath*:com/violin/dao/mapping/violininfo/ViolinInfoMapper.xml"/>
     </bean>
 
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage"  value="cn.jf.db.com.violin.dao" />
+        <property name="basePackage"  value="com.violin.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 
-    <!--  ================================== import sub-config file  ================================== -->
-    <import resource="spring-mybatis.xml" />
-    <import resource="spring-servlet.xml" />
-    <!--  ================================== /import sub-config file  ================================== -->
+
 
 
 
