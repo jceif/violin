@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.violin.dao.mapping.masterinfo.MasterInfoMapper">
+<resultMap id="masterInfo" type="com.violin.model.masterinfo.MasterInfo">
+	<result property="id" column="id"/>
+	<result property="name" column="name"/>
+	<result property="images" column="images"/>
+	<result property="desciption" column="desciption"/>
+	<result property="createTime" column="create_time"/>
+	<result property="sort" column="sort"/>
+</resultMap>
+<insert id="insertMasterInfo" parameterType="com.violin.model.masterinfo.MasterInfo">
+insert into master_info
+(	id,
+	name,
+	images,
+	desciption,
+	create_time,
+	sort
+)values(
+	#{id},
+	#{name},
+	#{images},
+	#{desciption},
+	#{createTime},
+	#{sort}
+)
+</insert>
+<delete id="deleteMasterInfoById">
+	delete from master_info
+	where id=#{id}
+</delete>
+<delete id="deleteMasterInfoAll">
+	delete from master_info
+</delete>
+<select id="findMasterInfoById" resultMap="masterInfo">
+	select * from master_info
+	where id=#{id}
+</select>
+<select id="findMasterInfoList" resultMap="masterInfo">
+	select * from master_info
+</select>
+<update id="updateMasterInfo" parameterType="com.violin.model.masterinfo.MasterInfo">
+update master_info
+<set>
+	id=#{id},
+	name=#{name},
+	images=#{images},
+	desciption=#{desciption},
+	create_time=#{createTime},
+	sort=#{sort}
+</set>
+<where>	
+id=#{id}	
+</where>	
+</update>
+<delete id="deleteMasterInfoListByIds" parameterType ="java.lang.String">
+	delete from master_info
+	where id in
+	<foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
+</delete>
+<delete id="deleteMasterInfoList" parameterType ="com.violin.model.masterinfo.MasterInfo">
+	delete from master_info
+	where id in
+	<foreach collection="list" item="item" index= "index" open="(" separator="," close=")">#{item.id}</foreach>
+</delete>
+<insert id="insertMasterInfoList" parameterType="java.util.List">
+insert into master_info
+(	id,
+	name,
+	images,
+	desciption,
+	create_time,
+	sort
+)values<foreach collection="list" item="item" index= "index" separator="," >
+(	#{item.id},
+	#{item.name},
+	#{item.images},
+	#{item.desciption},
+	#{item.createTime},
+	#{item.sort}
+)</foreach>
+</insert>
+<update id="updateMasterInfoList" parameterType="java.util.List">
+<foreach collection="list" item="item" index= "index" separator=";" >
+update master_info
+set
+	id=#{item.id},
+	name=#{item.name},
+	images=#{item.images},
+	desciption=#{item.desciption},
+	create_time=#{item.createTime},
+	sort=#{item.sort}
+
+where	
+id=#{item.id}	
+</foreach>
+</update>
+<select id="findMasterInfoQuery" resultMap="masterInfo">
+	select * from master_info
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="desciption!=null and desciption!=''"> 
+		AND desciption=#{desciption}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+	 <if test="sort!=null and sort!=''"> 
+		AND sort=#{sort}
+	</if>
+</where>
+	</select>
+<select id="findMasterInfoQueryPage" resultMap="masterInfo">
+	select * from master_info
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="desciption!=null and desciption!=''"> 
+		AND desciption=#{desciption}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+	 <if test="sort!=null and sort!=''"> 
+		AND sort=#{sort}
+	</if>
+</where>
+		limit #{startIndex},#{limit}
+
+</select>
+<select id="findCountMasterInfoQuery" resultType="java.lang.Integer">
+	select count(*) from master_info
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="desciption!=null and desciption!=''"> 
+		AND desciption=#{desciption}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+	 <if test="sort!=null and sort!=''"> 
+		AND sort=#{sort}
+	</if>
+</where>
+</select>
+</mapper>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.violin.dao.mapping.producttype.ProductTypeMapper">
+<resultMap id="productType" type="com.violin.model.producttype.ProductType">
+	<result property="id" column="id"/>
+	<result property="name" column="name"/>
+	<result property="description" column="description"/>
+	<result property="images" column="images"/>
+	<result property="createTime" column="create_time"/>
+</resultMap>
+<insert id="insertProductType" parameterType="com.violin.model.producttype.ProductType">
+insert into product_type
+(	id,
+	name,
+	description,
+	images,
+	create_time
+)values(
+	#{id},
+	#{name},
+	#{description},
+	#{images},
+	#{createTime}
+)
+</insert>
+<delete id="deleteProductTypeById">
+	delete from product_type
+	where id=#{id}
+</delete>
+<delete id="deleteProductTypeAll">
+	delete from product_type
+</delete>
+<select id="findProductTypeById" resultMap="productType">
+	select * from product_type
+	where id=#{id}
+</select>
+<select id="findProductTypeList" resultMap="productType">
+	select * from product_type
+</select>
+<update id="updateProductType" parameterType="com.violin.model.producttype.ProductType">
+update product_type
+<set>
+	id=#{id},
+	name=#{name},
+	description=#{description},
+	images=#{images},
+	create_time=#{createTime}
+</set>
+<where>	
+id=#{id}	
+</where>	
+</update>
+<delete id="deleteProductTypeListByIds" parameterType ="java.lang.String">
+	delete from product_type
+	where id in
+	<foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
+</delete>
+<delete id="deleteProductTypeList" parameterType ="com.violin.model.producttype.ProductType">
+	delete from product_type
+	where id in
+	<foreach collection="list" item="item" index= "index" open="(" separator="," close=")">#{item.id}</foreach>
+</delete>
+<insert id="insertProductTypeList" parameterType="java.util.List">
+insert into product_type
+(	id,
+	name,
+	description,
+	images,
+	create_time
+)values<foreach collection="list" item="item" index= "index" separator="," >
+(	#{item.id},
+	#{item.name},
+	#{item.description},
+	#{item.images},
+	#{item.createTime}
+)</foreach>
+</insert>
+<update id="updateProductTypeList" parameterType="java.util.List">
+<foreach collection="list" item="item" index= "index" separator=";" >
+update product_type
+set
+	id=#{item.id},
+	name=#{item.name},
+	description=#{item.description},
+	images=#{item.images},
+	create_time=#{item.createTime}
+
+where	
+id=#{item.id}	
+</foreach>
+</update>
+<select id="findProductTypeQuery" resultMap="productType">
+	select * from product_type
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="description!=null and description!=''"> 
+		AND description=#{description}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+</where>
+	</select>
+<select id="findProductTypeQueryPage" resultMap="productType">
+	select * from product_type
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="description!=null and description!=''"> 
+		AND description=#{description}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+</where>
+		limit #{startIndex},#{limit}
+
+</select>
+<select id="findCountProductTypeQuery" resultType="java.lang.Integer">
+	select count(*) from product_type
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="description!=null and description!=''"> 
+		AND description=#{description}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+</where>
+</select>
+</mapper>

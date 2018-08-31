@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.violin.dao.mapping.companyinfo.CompanyInfoMapper">
+<resultMap id="companyInfo" type="com.violin.model.companyinfo.CompanyInfo">
+	<result property="id" column="id"/>
+	<result property="name" column="name"/>
+	<result property="address" column="address"/>
+	<result property="servicePhone" column="service_phone"/>
+	<result property="salePhone" column="sale_phone"/>
+	<result property="images" column="images"/>
+	<result property="description" column="description"/>
+	<result property="updateTime" column="update_time"/>
+</resultMap>
+<insert id="insertCompanyInfo" parameterType="com.violin.model.companyinfo.CompanyInfo">
+insert into company_info
+(	id,
+	name,
+	address,
+	service_phone,
+	sale_phone,
+	images,
+	description,
+	update_time
+)values(
+	#{id},
+	#{name},
+	#{address},
+	#{servicePhone},
+	#{salePhone},
+	#{images},
+	#{description},
+	#{updateTime}
+)
+</insert>
+<delete id="deleteCompanyInfoById">
+	delete from company_info
+	where id=#{id}
+</delete>
+<delete id="deleteCompanyInfoAll">
+	delete from company_info
+</delete>
+<select id="findCompanyInfoById" resultMap="companyInfo">
+	select * from company_info
+	where id=#{id}
+</select>
+<select id="findCompanyInfoList" resultMap="companyInfo">
+	select * from company_info
+</select>
+<update id="updateCompanyInfo" parameterType="com.violin.model.companyinfo.CompanyInfo">
+update company_info
+<set>
+	id=#{id},
+	name=#{name},
+	address=#{address},
+	service_phone=#{servicePhone},
+	sale_phone=#{salePhone},
+	images=#{images},
+	description=#{description},
+	update_time=#{updateTime}
+</set>
+<where>	
+id=#{id}	
+</where>	
+</update>
+<delete id="deleteCompanyInfoListByIds" parameterType ="java.lang.String">
+	delete from company_info
+	where id in
+	<foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
+</delete>
+<delete id="deleteCompanyInfoList" parameterType ="com.violin.model.companyinfo.CompanyInfo">
+	delete from company_info
+	where id in
+	<foreach collection="list" item="item" index= "index" open="(" separator="," close=")">#{item.id}</foreach>
+</delete>
+<insert id="insertCompanyInfoList" parameterType="java.util.List">
+insert into company_info
+(	id,
+	name,
+	address,
+	service_phone,
+	sale_phone,
+	images,
+	description,
+	update_time
+)values<foreach collection="list" item="item" index= "index" separator="," >
+(	#{item.id},
+	#{item.name},
+	#{item.address},
+	#{item.servicePhone},
+	#{item.salePhone},
+	#{item.images},
+	#{item.description},
+	#{item.updateTime}
+)</foreach>
+</insert>
+<update id="updateCompanyInfoList" parameterType="java.util.List">
+<foreach collection="list" item="item" index= "index" separator=";" >
+update company_info
+set
+	id=#{item.id},
+	name=#{item.name},
+	address=#{item.address},
+	service_phone=#{item.servicePhone},
+	sale_phone=#{item.salePhone},
+	images=#{item.images},
+	description=#{item.description},
+	update_time=#{item.updateTime}
+
+where	
+id=#{item.id}	
+</foreach>
+</update>
+<select id="findCompanyInfoQuery" resultMap="companyInfo">
+	select * from company_info
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="address!=null and address!=''"> 
+		AND address=#{address}
+	</if>
+	 <if test="servicePhone!=null and servicePhone!=''"> 
+		AND service_phone=#{servicePhone}
+	</if>
+	 <if test="salePhone!=null and salePhone!=''"> 
+		AND sale_phone=#{salePhone}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="description!=null and description!=''"> 
+		AND description=#{description}
+	</if>
+	 <if test="updateTime!=null and updateTime!=''"> 
+		AND update_time=#{updateTime}
+	</if>
+</where>
+	</select>
+<select id="findCompanyInfoQueryPage" resultMap="companyInfo">
+	select * from company_info
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="address!=null and address!=''"> 
+		AND address=#{address}
+	</if>
+	 <if test="servicePhone!=null and servicePhone!=''"> 
+		AND service_phone=#{servicePhone}
+	</if>
+	 <if test="salePhone!=null and salePhone!=''"> 
+		AND sale_phone=#{salePhone}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="description!=null and description!=''"> 
+		AND description=#{description}
+	</if>
+	 <if test="updateTime!=null and updateTime!=''"> 
+		AND update_time=#{updateTime}
+	</if>
+</where>
+		limit #{startIndex},#{limit}
+
+</select>
+<select id="findCountCompanyInfoQuery" resultType="java.lang.Integer">
+	select count(*) from company_info
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="address!=null and address!=''"> 
+		AND address=#{address}
+	</if>
+	 <if test="servicePhone!=null and servicePhone!=''"> 
+		AND service_phone=#{servicePhone}
+	</if>
+	 <if test="salePhone!=null and salePhone!=''"> 
+		AND sale_phone=#{salePhone}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="description!=null and description!=''"> 
+		AND description=#{description}
+	</if>
+	 <if test="updateTime!=null and updateTime!=''"> 
+		AND update_time=#{updateTime}
+	</if>
+</where>
+</select>
+</mapper>

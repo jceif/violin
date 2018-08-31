@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
+    <dubbo:application name="violin-dubbo-provider"/>
+    <dubbo:registry address="${dubbo.registry}"/>
+    <dubbo:protocol name="dubbo" port="20333"/>
+    <dubbo:consumer timeout="1200000"/>
+    <dubbo:provider timeout="120000" threadpool="cached" threads="500" accepts="1000" />
+
+    <bean id="companyInfoService" class="com.violin.impl.companyinfo.CompanyInfoServiceImpl"/>
+    <dubbo:service ref="companyInfoService" interface="com.violin.service.companyinfo.CompanyInfoService"/>
+
+    <bean id="dictDataService" class="com.violin.impl.dictdata.DictDataServiceImpl"/>
+    <dubbo:service ref="dictDataService" interface="com.violin.service.dictdata.DictDataService"/>
+
+    <bean id="filesService" class="com.violin.impl.files.FilesServiceImpl"/>
+    <dubbo:service ref="filesService" interface="com.violin.service.files.FilesService"/>
+
+    <bean id="masterInfoService" class="com.violin.impl.masterinfo.MasterInfoServiceImpl"/>
+    <dubbo:service ref="masterInfoService" interface="com.violin.service.masterinfo.MasterInfoService"/>
+
+    <bean id="newsService" class="com.violin.impl.news.NewsServiceImpl"/>
+    <dubbo:service ref="newsService" interface="com.violin.service.news.NewsService"/>
+
+    <bean id="productTypeService" class="com.violin.impl.producttype.ProductTypeServiceImpl"/>
+    <dubbo:service ref="productTypeService" interface="com.violin.service.producttype.ProductTypeService"/>
+
+    <bean id="userAccountService" class="com.violin.impl.useraccount.UserAccountServiceImpl"/>
+    <dubbo:service ref="userAccountService" interface="com.violin.service.useraccount.UserAccountService"/>
+
+    <bean id="userInfoService" class="com.violin.impl.userinfo.UserInfoServiceImpl"/>
+    <dubbo:service ref="userInfoService" interface="com.violin.service.userinfo.UserInfoService"/>
+
+    <bean id="violinInfoService" class="com.violin.impl.violininfo.ViolinInfoServiceImpl"/>
+    <dubbo:service ref="violinInfoService" interface="com.violin.service.violininfo.ViolinInfoService"/>
+</beans>

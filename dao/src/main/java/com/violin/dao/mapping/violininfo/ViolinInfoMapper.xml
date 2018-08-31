@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.violin.dao.mapping.violininfo.ViolinInfoMapper">
+<resultMap id="violinInfo" type="com.violin.model.violininfo.ViolinInfo">
+	<result property="id" column="id"/>
+	<result property="name" column="name"/>
+	<result property="code" column="code"/>
+	<result property="price" column="price"/>
+	<result property="author" column="author"/>
+	<result property="mianBan" column="mian_ban"/>
+	<result property="beiBan" column="bei_ban"/>
+	<result property="ceBan" column="ce_ban"/>
+	<result property="youQi" column="you_qi"/>
+	<result property="qinXian" column="qin_xian"/>
+	<result property="qinMa" column="qin_ma"/>
+	<result property="qinGong" column="qin_gong"/>
+	<result property="qinHe" column="qin_he"/>
+	<result property="zhiBan" column="zhi_ban"/>
+	<result property="xianZhou" column="xian_zhou"/>
+	<result property="weiDiao" column="wei_diao"/>
+	<result property="weiSheng" column="wei_sheng"/>
+	<result property="description" column="description"/>
+	<result property="images" column="images"/>
+	<result property="createTime" column="create_time"/>
+	<result property="viewTimes" column="view_times"/>
+	<result property="buyUrl" column="buy_url"/>
+	<result property="marketTime" column="market_time"/>
+	<result property="isHot" column="is_hot"/>
+</resultMap>
+<insert id="insertViolinInfo" parameterType="com.violin.model.violininfo.ViolinInfo">
+insert into violin_info
+(	id,
+	name,
+	code,
+	price,
+	author,
+	mian_ban,
+	bei_ban,
+	ce_ban,
+	you_qi,
+	qin_xian,
+	qin_ma,
+	qin_gong,
+	qin_he,
+	zhi_ban,
+	xian_zhou,
+	wei_diao,
+	wei_sheng,
+	description,
+	images,
+	create_time,
+	view_times,
+	buy_url,
+	market_time,
+	is_hot
+)values(
+	#{id},
+	#{name},
+	#{code},
+	#{price},
+	#{author},
+	#{mianBan},
+	#{beiBan},
+	#{ceBan},
+	#{youQi},
+	#{qinXian},
+	#{qinMa},
+	#{qinGong},
+	#{qinHe},
+	#{zhiBan},
+	#{xianZhou},
+	#{weiDiao},
+	#{weiSheng},
+	#{description},
+	#{images},
+	#{createTime},
+	#{viewTimes},
+	#{buyUrl},
+	#{marketTime},
+	#{isHot}
+)
+</insert>
+<delete id="deleteViolinInfoById">
+	delete from violin_info
+	where id=#{id}
+</delete>
+<delete id="deleteViolinInfoAll">
+	delete from violin_info
+</delete>
+<select id="findViolinInfoById" resultMap="violinInfo">
+	select * from violin_info
+	where id=#{id}
+</select>
+<select id="findViolinInfoList" resultMap="violinInfo">
+	select * from violin_info
+</select>
+<update id="updateViolinInfo" parameterType="com.violin.model.violininfo.ViolinInfo">
+update violin_info
+<set>
+	id=#{id},
+	name=#{name},
+	code=#{code},
+	price=#{price},
+	author=#{author},
+	mian_ban=#{mianBan},
+	bei_ban=#{beiBan},
+	ce_ban=#{ceBan},
+	you_qi=#{youQi},
+	qin_xian=#{qinXian},
+	qin_ma=#{qinMa},
+	qin_gong=#{qinGong},
+	qin_he=#{qinHe},
+	zhi_ban=#{zhiBan},
+	xian_zhou=#{xianZhou},
+	wei_diao=#{weiDiao},
+	wei_sheng=#{weiSheng},
+	description=#{description},
+	images=#{images},
+	create_time=#{createTime},
+	view_times=#{viewTimes},
+	buy_url=#{buyUrl},
+	market_time=#{marketTime},
+	is_hot=#{isHot}
+</set>
+<where>	
+id=#{id}	
+</where>	
+</update>
+<delete id="deleteViolinInfoListByIds" parameterType ="java.lang.String">
+	delete from violin_info
+	where id in
+	<foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
+</delete>
+<delete id="deleteViolinInfoList" parameterType ="com.violin.model.violininfo.ViolinInfo">
+	delete from violin_info
+	where id in
+	<foreach collection="list" item="item" index= "index" open="(" separator="," close=")">#{item.id}</foreach>
+</delete>
+<insert id="insertViolinInfoList" parameterType="java.util.List">
+insert into violin_info
+(	id,
+	name,
+	code,
+	price,
+	author,
+	mian_ban,
+	bei_ban,
+	ce_ban,
+	you_qi,
+	qin_xian,
+	qin_ma,
+	qin_gong,
+	qin_he,
+	zhi_ban,
+	xian_zhou,
+	wei_diao,
+	wei_sheng,
+	description,
+	images,
+	create_time,
+	view_times,
+	buy_url,
+	market_time,
+	is_hot
+)values<foreach collection="list" item="item" index= "index" separator="," >
+(	#{item.id},
+	#{item.name},
+	#{item.code},
+	#{item.price},
+	#{item.author},
+	#{item.mianBan},
+	#{item.beiBan},
+	#{item.ceBan},
+	#{item.youQi},
+	#{item.qinXian},
+	#{item.qinMa},
+	#{item.qinGong},
+	#{item.qinHe},
+	#{item.zhiBan},
+	#{item.xianZhou},
+	#{item.weiDiao},
+	#{item.weiSheng},
+	#{item.description},
+	#{item.images},
+	#{item.createTime},
+	#{item.viewTimes},
+	#{item.buyUrl},
+	#{item.marketTime},
+	#{item.isHot}
+)</foreach>
+</insert>
+<update id="updateViolinInfoList" parameterType="java.util.List">
+<foreach collection="list" item="item" index= "index" separator=";" >
+update violin_info
+set
+	id=#{item.id},
+	name=#{item.name},
+	code=#{item.code},
+	price=#{item.price},
+	author=#{item.author},
+	mian_ban=#{item.mianBan},
+	bei_ban=#{item.beiBan},
+	ce_ban=#{item.ceBan},
+	you_qi=#{item.youQi},
+	qin_xian=#{item.qinXian},
+	qin_ma=#{item.qinMa},
+	qin_gong=#{item.qinGong},
+	qin_he=#{item.qinHe},
+	zhi_ban=#{item.zhiBan},
+	xian_zhou=#{item.xianZhou},
+	wei_diao=#{item.weiDiao},
+	wei_sheng=#{item.weiSheng},
+	description=#{item.description},
+	images=#{item.images},
+	create_time=#{item.createTime},
+	view_times=#{item.viewTimes},
+	buy_url=#{item.buyUrl},
+	market_time=#{item.marketTime},
+	is_hot=#{item.isHot}
+
+where	
+id=#{item.id}	
+</foreach>
+</update>
+<select id="findViolinInfoQuery" resultMap="violinInfo">
+	select * from violin_info
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="code!=null and code!=''"> 
+		AND code=#{code}
+	</if>
+	 <if test="price!=null and price!=''"> 
+		AND price=#{price}
+	</if>
+	 <if test="author!=null and author!=''"> 
+		AND author=#{author}
+	</if>
+	 <if test="mianBan!=null and mianBan!=''"> 
+		AND mian_ban=#{mianBan}
+	</if>
+	 <if test="beiBan!=null and beiBan!=''"> 
+		AND bei_ban=#{beiBan}
+	</if>
+	 <if test="ceBan!=null and ceBan!=''"> 
+		AND ce_ban=#{ceBan}
+	</if>
+	 <if test="youQi!=null and youQi!=''"> 
+		AND you_qi=#{youQi}
+	</if>
+	 <if test="qinXian!=null and qinXian!=''"> 
+		AND qin_xian=#{qinXian}
+	</if>
+	 <if test="qinMa!=null and qinMa!=''"> 
+		AND qin_ma=#{qinMa}
+	</if>
+	 <if test="qinGong!=null and qinGong!=''"> 
+		AND qin_gong=#{qinGong}
+	</if>
+	 <if test="qinHe!=null and qinHe!=''"> 
+		AND qin_he=#{qinHe}
+	</if>
+	 <if test="zhiBan!=null and zhiBan!=''"> 
+		AND zhi_ban=#{zhiBan}
+	</if>
+	 <if test="xianZhou!=null and xianZhou!=''"> 
+		AND xian_zhou=#{xianZhou}
+	</if>
+	 <if test="weiDiao!=null and weiDiao!=''"> 
+		AND wei_diao=#{weiDiao}
+	</if>
+	 <if test="weiSheng!=null and weiSheng!=''"> 
+		AND wei_sheng=#{weiSheng}
+	</if>
+	 <if test="description!=null and description!=''"> 
+		AND description=#{description}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+	 <if test="viewTimes!=null and viewTimes!=''"> 
+		AND view_times=#{viewTimes}
+	</if>
+	 <if test="buyUrl!=null and buyUrl!=''"> 
+		AND buy_url=#{buyUrl}
+	</if>
+	 <if test="marketTime!=null and marketTime!=''"> 
+		AND market_time=#{marketTime}
+	</if>
+	 <if test="isHot!=null and isHot!=''"> 
+		AND is_hot=#{isHot}
+	</if>
+</where>
+	</select>
+<select id="findViolinInfoQueryPage" resultMap="violinInfo">
+	select * from violin_info
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="code!=null and code!=''"> 
+		AND code=#{code}
+	</if>
+	 <if test="price!=null and price!=''"> 
+		AND price=#{price}
+	</if>
+	 <if test="author!=null and author!=''"> 
+		AND author=#{author}
+	</if>
+	 <if test="mianBan!=null and mianBan!=''"> 
+		AND mian_ban=#{mianBan}
+	</if>
+	 <if test="beiBan!=null and beiBan!=''"> 
+		AND bei_ban=#{beiBan}
+	</if>
+	 <if test="ceBan!=null and ceBan!=''"> 
+		AND ce_ban=#{ceBan}
+	</if>
+	 <if test="youQi!=null and youQi!=''"> 
+		AND you_qi=#{youQi}
+	</if>
+	 <if test="qinXian!=null and qinXian!=''"> 
+		AND qin_xian=#{qinXian}
+	</if>
+	 <if test="qinMa!=null and qinMa!=''"> 
+		AND qin_ma=#{qinMa}
+	</if>
+	 <if test="qinGong!=null and qinGong!=''"> 
+		AND qin_gong=#{qinGong}
+	</if>
+	 <if test="qinHe!=null and qinHe!=''"> 
+		AND qin_he=#{qinHe}
+	</if>
+	 <if test="zhiBan!=null and zhiBan!=''"> 
+		AND zhi_ban=#{zhiBan}
+	</if>
+	 <if test="xianZhou!=null and xianZhou!=''"> 
+		AND xian_zhou=#{xianZhou}
+	</if>
+	 <if test="weiDiao!=null and weiDiao!=''"> 
+		AND wei_diao=#{weiDiao}
+	</if>
+	 <if test="weiSheng!=null and weiSheng!=''"> 
+		AND wei_sheng=#{weiSheng}
+	</if>
+	 <if test="description!=null and description!=''"> 
+		AND description=#{description}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+	 <if test="viewTimes!=null and viewTimes!=''"> 
+		AND view_times=#{viewTimes}
+	</if>
+	 <if test="buyUrl!=null and buyUrl!=''"> 
+		AND buy_url=#{buyUrl}
+	</if>
+	 <if test="marketTime!=null and marketTime!=''"> 
+		AND market_time=#{marketTime}
+	</if>
+	 <if test="isHot!=null and isHot!=''"> 
+		AND is_hot=#{isHot}
+	</if>
+</where>
+		limit #{startIndex},#{limit}
+
+</select>
+<select id="findCountViolinInfoQuery" resultType="java.lang.Integer">
+	select count(*) from violin_info
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="name!=null and name!=''"> 
+		AND name=#{name}
+	</if>
+	 <if test="code!=null and code!=''"> 
+		AND code=#{code}
+	</if>
+	 <if test="price!=null and price!=''"> 
+		AND price=#{price}
+	</if>
+	 <if test="author!=null and author!=''"> 
+		AND author=#{author}
+	</if>
+	 <if test="mianBan!=null and mianBan!=''"> 
+		AND mian_ban=#{mianBan}
+	</if>
+	 <if test="beiBan!=null and beiBan!=''"> 
+		AND bei_ban=#{beiBan}
+	</if>
+	 <if test="ceBan!=null and ceBan!=''"> 
+		AND ce_ban=#{ceBan}
+	</if>
+	 <if test="youQi!=null and youQi!=''"> 
+		AND you_qi=#{youQi}
+	</if>
+	 <if test="qinXian!=null and qinXian!=''"> 
+		AND qin_xian=#{qinXian}
+	</if>
+	 <if test="qinMa!=null and qinMa!=''"> 
+		AND qin_ma=#{qinMa}
+	</if>
+	 <if test="qinGong!=null and qinGong!=''"> 
+		AND qin_gong=#{qinGong}
+	</if>
+	 <if test="qinHe!=null and qinHe!=''"> 
+		AND qin_he=#{qinHe}
+	</if>
+	 <if test="zhiBan!=null and zhiBan!=''"> 
+		AND zhi_ban=#{zhiBan}
+	</if>
+	 <if test="xianZhou!=null and xianZhou!=''"> 
+		AND xian_zhou=#{xianZhou}
+	</if>
+	 <if test="weiDiao!=null and weiDiao!=''"> 
+		AND wei_diao=#{weiDiao}
+	</if>
+	 <if test="weiSheng!=null and weiSheng!=''"> 
+		AND wei_sheng=#{weiSheng}
+	</if>
+	 <if test="description!=null and description!=''"> 
+		AND description=#{description}
+	</if>
+	 <if test="images!=null and images!=''"> 
+		AND images=#{images}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+	 <if test="viewTimes!=null and viewTimes!=''"> 
+		AND view_times=#{viewTimes}
+	</if>
+	 <if test="buyUrl!=null and buyUrl!=''"> 
+		AND buy_url=#{buyUrl}
+	</if>
+	 <if test="marketTime!=null and marketTime!=''"> 
+		AND market_time=#{marketTime}
+	</if>
+	 <if test="isHot!=null and isHot!=''"> 
+		AND is_hot=#{isHot}
+	</if>
+</where>
+</select>
+</mapper>

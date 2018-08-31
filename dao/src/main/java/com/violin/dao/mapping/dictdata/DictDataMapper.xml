@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.violin.dao.mapping.dictdata.DictDataMapper">
+<resultMap id="dictData" type="com.violin.model.dictdata.DictData">
+	<result property="id" column="id"/>
+	<result property="dictCode" column="dict_code"/>
+	<result property="dictName" column="dict_name"/>
+	<result property="dictValue" column="dict_value"/>
+	<result property="dictSoft" column="dict_soft"/>
+	<result property="createTime" column="create_time"/>
+</resultMap>
+<insert id="insertDictData" parameterType="com.violin.model.dictdata.DictData">
+insert into dict_data
+(	id,
+	dict_code,
+	dict_name,
+	dict_value,
+	dict_soft,
+	create_time
+)values(
+	#{id},
+	#{dictCode},
+	#{dictName},
+	#{dictValue},
+	#{dictSoft},
+	#{createTime}
+)
+</insert>
+<delete id="deleteDictDataById">
+	delete from dict_data
+	where id=#{id}
+</delete>
+<delete id="deleteDictDataAll">
+	delete from dict_data
+</delete>
+<select id="findDictDataById" resultMap="dictData">
+	select * from dict_data
+	where id=#{id}
+</select>
+<select id="findDictDataList" resultMap="dictData">
+	select * from dict_data
+</select>
+<update id="updateDictData" parameterType="com.violin.model.dictdata.DictData">
+update dict_data
+<set>
+	id=#{id},
+	dict_code=#{dictCode},
+	dict_name=#{dictName},
+	dict_value=#{dictValue},
+	dict_soft=#{dictSoft},
+	create_time=#{createTime}
+</set>
+<where>	
+id=#{id}	
+</where>	
+</update>
+<delete id="deleteDictDataListByIds" parameterType ="java.lang.String">
+	delete from dict_data
+	where id in
+	<foreach item="idItem" collection="array" open="(" separator="," close=")">#{idItem}</foreach>
+</delete>
+<delete id="deleteDictDataList" parameterType ="com.violin.model.dictdata.DictData">
+	delete from dict_data
+	where id in
+	<foreach collection="list" item="item" index= "index" open="(" separator="," close=")">#{item.id}</foreach>
+</delete>
+<insert id="insertDictDataList" parameterType="java.util.List">
+insert into dict_data
+(	id,
+	dict_code,
+	dict_name,
+	dict_value,
+	dict_soft,
+	create_time
+)values<foreach collection="list" item="item" index= "index" separator="," >
+(	#{item.id},
+	#{item.dictCode},
+	#{item.dictName},
+	#{item.dictValue},
+	#{item.dictSoft},
+	#{item.createTime}
+)</foreach>
+</insert>
+<update id="updateDictDataList" parameterType="java.util.List">
+<foreach collection="list" item="item" index= "index" separator=";" >
+update dict_data
+set
+	id=#{item.id},
+	dict_code=#{item.dictCode},
+	dict_name=#{item.dictName},
+	dict_value=#{item.dictValue},
+	dict_soft=#{item.dictSoft},
+	create_time=#{item.createTime}
+
+where	
+id=#{item.id}	
+</foreach>
+</update>
+<select id="findDictDataQuery" resultMap="dictData">
+	select * from dict_data
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="dictCode!=null and dictCode!=''"> 
+		AND dict_code=#{dictCode}
+	</if>
+	 <if test="dictName!=null and dictName!=''"> 
+		AND dict_name=#{dictName}
+	</if>
+	 <if test="dictValue!=null and dictValue!=''"> 
+		AND dict_value=#{dictValue}
+	</if>
+	 <if test="dictSoft!=null and dictSoft!=''"> 
+		AND dict_soft=#{dictSoft}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+</where>
+	</select>
+<select id="findDictDataQueryPage" resultMap="dictData">
+	select * from dict_data
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="dictCode!=null and dictCode!=''"> 
+		AND dict_code=#{dictCode}
+	</if>
+	 <if test="dictName!=null and dictName!=''"> 
+		AND dict_name=#{dictName}
+	</if>
+	 <if test="dictValue!=null and dictValue!=''"> 
+		AND dict_value=#{dictValue}
+	</if>
+	 <if test="dictSoft!=null and dictSoft!=''"> 
+		AND dict_soft=#{dictSoft}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+</where>
+		limit #{startIndex},#{limit}
+
+</select>
+<select id="findCountDictDataQuery" resultType="java.lang.Integer">
+	select count(*) from dict_data
+	<where>
+	 <if test="id!=null and id!=''"> 
+		AND id=#{id}
+	</if>
+	 <if test="dictCode!=null and dictCode!=''"> 
+		AND dict_code=#{dictCode}
+	</if>
+	 <if test="dictName!=null and dictName!=''"> 
+		AND dict_name=#{dictName}
+	</if>
+	 <if test="dictValue!=null and dictValue!=''"> 
+		AND dict_value=#{dictValue}
+	</if>
+	 <if test="dictSoft!=null and dictSoft!=''"> 
+		AND dict_soft=#{dictSoft}
+	</if>
+	 <if test="createTime!=null and createTime!=''"> 
+		AND create_time=#{createTime}
+	</if>
+</where>
+</select>
+</mapper>
