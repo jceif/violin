@@ -6,10 +6,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="web" />
           <element id="module-output" name="service" />
-          <element id="module-output" name="dao" />
-          <element id="module-output" name="impl" />
           <element id="module-output" name="model" />
           <element id="module-output" name="common" />
+          <element id="module-output" name="impl" />
+          <element id="module-output" name="dao" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.16.RELEASE" />
@@ -33,6 +33,7 @@
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.11.1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.11.1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-web:2.11.1" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.47" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="web/web/Web" />

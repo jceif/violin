@@ -8,15 +8,13 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-      classpath:config/spring-mybatis.xml,
       classpath:config/applicationContext.xml,
+      classpath:config/spring-mybatis.xml,
       classpath:config/spring-dubbo-provider.xml,
       classpath:config/spring-servlet.xml,
       classpath:config/log4j.xml
     </param-value>
   </context-param>
-
-
 
 
 
