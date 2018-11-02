@@ -20,7 +20,7 @@
 
 
     <!-- 默认扫描的包路径 -->
-    <context:component-scan base-package="com.violin.controller,com.violin.impl,com.violin.dao.mapping">
+    <context:component-scan base-package="com.violin.test,com.violin.impl,com.violin.dao.mapping">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
