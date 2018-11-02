@@ -53,6 +53,6 @@
 
     <mvc:default-servlet-handler/>
 
-
+    <bean class="com.violin.start.dubbo.Start"></bean>
 
 </beans>

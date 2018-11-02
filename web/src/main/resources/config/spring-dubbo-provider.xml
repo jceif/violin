@@ -6,7 +6,7 @@
 http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
     <dubbo:application name="violin-dubbo-provider"/>
     <!--<dubbo:registry address="${dubbo.registry}"/>-->
-    <dubbo:registry address="127.0.0.1:2181"/>
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
     <dubbo:protocol name="dubbo" port="20332"/>
     <dubbo:consumer timeout="1200000"/>
     <dubbo:provider timeout="120000" threadpool="cached" threads="500" accepts="1000" />
