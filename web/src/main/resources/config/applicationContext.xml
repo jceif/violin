@@ -45,7 +45,7 @@
 
     <!--  ================================== import sub-config file  ================================== -->
     <import resource="spring-mybatis.xml" />
-    <import resource="spring-servlet.xml" />
+    <!--<import resource="spring-dubbo-provider.xml" />-->
     <!--  ================================== /import sub-config file  ================================== -->
 
 
