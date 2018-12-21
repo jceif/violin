@@ -12,7 +12,7 @@
        default-lazy-init="true">
 
 
-    <!-- 引入外部properties文件 -->
+
     <context:property-placeholder location="classpath:properties/*.properties" ignore-unresolvable="true"/>
 
     <!-- 添加注解驱动 -->
@@ -20,7 +20,7 @@
 
 
     <!-- 默认扫描的包路径 -->
-    <context:component-scan base-package="com.violin.test,com.violin.impl,com.violin.dao.mapping">
+    <context:component-scan base-package="com.violin.impl,com.violin.dao.db.*">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
@@ -28,30 +28,11 @@
         <context:include-filter type="annotation" expression="org.springframework.scheduling.annotation.Async" />
     </context:component-scan>
 
-
-    <!-- 只读的SessionFactory -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" scope="singleton">
-        <property name="dataSource" ref="dataSourceWrite" />
-        <property name="mapperLocations" value="classpath*:com/violin/dao/mapping/*/*Mapper.xml"/>
-    </bean>
-
-
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage"  value="com.violin.dao.mapping" />
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-    </bean>
-
-
-
-    <!--  ================================== import sub-config file  ================================== -->
-    <import resource="spring-mybatis.xml" />
-    <!--<import resource="spring-dubbo-provider.xml" />-->
-    <!--  ================================== /import sub-config file  ================================== -->
-
-
-
-
     <mvc:default-servlet-handler/>
+
+
+
+
 
     <bean class="com.violin.start.dubbo.Start"></bean>
 
