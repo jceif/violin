@@ -8,9 +8,10 @@
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <dubbo:application name="dubbo-provider"/>
+    <!--<dubbo:registry address="N/A"/>-->
 
-    <!--<dubbo:registry address="${dubbo.registry}"/>-->
-    <dubbo:registry address="zookeeper://180.76.187.220:2181"/>
+    <dubbo:registry address="${dubbo.registry}"/>
+    <!--<dubbo:registry address="zookeeper://180.76.187.220:2181"/>-->
     <dubbo:protocol name="dubbo" port="20332"/>
 
     <dubbo:provider timeout="120000" threadpool="cached" threads="500" accepts="1000"/>
