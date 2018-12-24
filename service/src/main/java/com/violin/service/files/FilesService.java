@@ -1,6 +1,5 @@
 package com.violin.service.files;
 
-import com.violin.common.page.PageUtil;
 import com.violin.model.files.Files;
 
 import java.util.List;
@@ -8,30 +7,102 @@ import java.util.Map;
 
 public interface FilesService {
 
-	public void insertFiles(Files files);
 
-	public void deleteFilesById(String filesId);
+	Files findFilesById(Integer id);
 
-	public int deleteFilesAll();
+	List<Files> findFilesQuery(Map map);
 
-	public void updateFiles(Files files);
 
-	public Files findFilesById(String filesId);
+	/**
+	 * 保存文件到临时目录
+	 *
+	 * @return
+	 */
+	Files upload(Files files, byte [] bytes);
 
-	public List<Files> findFilesList();
 
-	public int deleteFilesListByIds(String[] Ids);
+	/**
+	 * 获得file文件流
+	 *
+	 * @param filePath
+	 * @param  fileName
+	 * @return
+	 */
+	byte[] getFile(String filePath,String fileName);
 
-	public int deleteFilesList(List<Files> filess);
 
-	public void insertFilesList(List<Files> filess);
+	/**
+	 *  获得file文件流
+	 *
+	 * @param fileId
+	 * @return
+	 */
+	byte[] getFile(int fileId);
 
-	public void updateFilesList(List<Files> filess);
+	/**
+	 *  获得file文件流
+	 *
+	 * @param files
+	 * @return
+	 */
+	byte[] getFile(Files files);
 
-	public List<Files> findFilesQuery(Map map);
 
-	public PageUtil<Files> findFilesQueryPage(Map map, String pageNo, String pageSize);
+	/**
+	 * 删除文件
+	 *
+	 * @param filePath
+	 * @param fileName
+	 * @return
+	 */
+	Boolean deleteFiles(String filePath,String fileName);
 
-	public int findCountFilesQuery(Map map);
+	/**
+	 * 删除文件
+	 *
+	 * @param id
+	 * @return
+	 */
+	Boolean deleteFiles(Integer id);
+
+
+	/**
+	 * 删除文件
+	 *
+	 * @param files
+	 * @return
+	 */
+	Boolean deleteFiles(Files files);
+
+
+	/**
+	 * 临时文件转存永久文件
+	 *
+	 * @param id
+	 * @return
+	 */
+	Boolean toPermanent(Integer id);
+
+	/**
+	 * 临时文件转存永久文件
+	 *
+	 * @param filesList
+	 * @return
+	 */
+	Boolean toPermanent(List<Files> filesList);
+
+	/**
+	 * 临时文件转存永久文件
+	 *
+	 * @param files
+	 * @return
+	 */
+	Boolean toPermanent(Files files);
+
+	/**
+	 * Created by jc on 2018/3/21 13:43
+	 * description 根据路径转存为永久文件
+	 */
+	Boolean toPermanentByPath(String filePath, String fileName);
 
 }
